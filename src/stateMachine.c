@@ -39,6 +39,10 @@
 #if DBG_MACHINE > 0
 	#define DBG_P( ... ) printf( __VA_ARGS__ )
 
+#define MAX_MSG 	5
+#define TSK_BUSY    0x80
+#define TSK_READY   0x01
+
 static char *debug_msg[] = {
 	"EVENT_0",
 	"EVENT_1",

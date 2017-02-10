@@ -21,15 +21,6 @@
 extern "C" {
 #endif  /* __cplusplus */
 
-#define MAX_MSG 	5
-#define TSK_BUSY    0x80
-#define TSK_READY   0x01
-
-// #define ENTER_CRITICAL(x) local_irq_save(x);
-// #define EXIT_CRITICAL(x)  local_irq_restore(x);
-#define ENTER_CRITICAL(x) 
-#define EXIT_CRITICAL(x)  
-
 	typedef struct _StateTable {
 		int msg;			// 事件消息
 		int cur_state;		// 当前状态
