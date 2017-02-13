@@ -34,38 +34,15 @@
 /* ---------------------------------------------------------------------------*
  *                        macro define
  *----------------------------------------------------------------------------*/
-#define DBG_MACHINE 1
-
 #if DBG_MACHINE > 0
 	#define DBG_P( ... ) printf( __VA_ARGS__ )
+#else
+	#define DBG_P(...)
+#endif
 
 #define MAX_MSG 	5
 #define TSK_BUSY    0x80
 #define TSK_READY   0x01
-
-static char *debug_msg[] = {
-	"EVENT_0",
-	"EVENT_1",
-	"EVENT_2",
-	"EVENT_3",
-};
-
-static char *debug_state[] = {
-	"ST_0",		
-	"ST_1",
-	"ST_2",
-	"ST_3",
-};
-
-static char *debug_do[] = {
-	"DO_0",
-	"DO_1",
-	"DO_2",
-	"DO_3",
-};
-#else
-	#define DBG_P(...)
-#endif
 
 typedef struct _TcbStruct{
 	int       status;
@@ -170,11 +147,11 @@ static int stmExecEntry(StMachine *This,MsgData * msg)
     for (; num > 0; num--,funcentry++) {
 		if (		(msg->msg == funcentry->msg) 
 				&& 	(This->priv->cur_state == funcentry->cur_state)) {
-			DBG_P("[ST]msg:%s,cur:%s,next:%s,do:%s\n",
-					debug_msg[msg->msg],
-					debug_state[funcentry->cur_state],
-					debug_state[funcentry->next_state],
-					debug_do[funcentry->run]);
+			DBG_P("[ST]msg:%d,cur:%d,next:%d,do:%d\n",
+					msg->msg,
+					funcentry->cur_state,
+					funcentry->next_state,
+					funcentry->run);
 			This->priv->status_run = funcentry->run ;
 			This->priv->data = msg->data;
 			This->priv->cur_state = funcentry->next_state;

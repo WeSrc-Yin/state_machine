@@ -20,7 +20,7 @@
 #ifdef __cplusplus
 extern "C" {
 #endif  /* __cplusplus */
-
+// #define DBG_MACHINE 1
 	typedef struct _StateTable {
 		int msg;			// 事件消息
 		int cur_state;		// 当前状态
